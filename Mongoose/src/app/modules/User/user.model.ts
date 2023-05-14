@@ -1,7 +1,11 @@
-import { model } from "../../../imports";
-import IUser from "./user.interface";
+import { Model, model } from "../../../imports";
+import IUser, { IUserMethods, UserModelType } from "./user.interface";
 import userSchema from "./user.schema";
 
-const UserModel = model<IUser>('User', userSchema, 'mongoose');
+// creating a type for our custom methods for user . this wont work if we want both instance methods and static methods
+// export type UserModelType = Model<IUser, {}, IUserMethods>;
+
+// including the type in our model
+const UserModel = model<IUser, UserModelType>('User', userSchema, 'mongoose');
 
 export default UserModel;

@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from '../../../imports';
-import { createUser, getSpeceficUser, getUsers } from './user.service';
+import { createUser, getAdminUsers, getSpeceficUser, getUsers } from './user.service';
 
 const createUserController = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
@@ -35,4 +35,16 @@ const getUserByIdController = async (req: Request, res: Response, next: NextFunc
     }
 };
 
-export { createUserController, getUsersController, getUserByIdController };
+
+const getAdminUsersController = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    try {
+        const adminUsers = await getAdminUsers();
+        res.status(200).json(adminUsers);
+    }
+    catch (err) {
+        console.log(err);
+        res.status(404).send({ error: 'error' });
+    }
+};
+
+export { createUserController, getUsersController, getUserByIdController, getAdminUsersController };

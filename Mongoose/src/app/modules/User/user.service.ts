@@ -8,8 +8,9 @@ const createUser = async (req: Request): Promise<IUser> => {
             fName: req.body.name.fName,
             lName: req.body.name.lName,
             mName: req.body.name.mName
-        }, password: req.body.password, role: 'student', dateOfBirth: req.body.dateOfBirth
+        }, password: req.body.password, role: req.body.role, dateOfBirth: req.body.dateOfBirth
     });
+    userInstance.fullName = userInstance.createFullName();
     const newUser = await userInstance.save();
     return newUser;
 };
@@ -24,4 +25,8 @@ const getSpeceficUser = async (id: string): Promise<IUser | null> => {
     return singleUser;
 };
 
-export { createUser, getUsers, getSpeceficUser };
+const getAdminUsers = async () => {
+    const allAdminUsers = await UserModel.getAdminUsers();
+    return allAdminUsers;
+};
+export { createUser, getUsers, getSpeceficUser, getAdminUsers };
