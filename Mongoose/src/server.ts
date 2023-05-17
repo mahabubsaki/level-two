@@ -1,8 +1,6 @@
 //import export part
-
-import app from "./app";
 import { port } from "./constants";
-import { mongoose } from "./imports";
+import { app, mongoose } from "./imports";
 
 async function main() {
     try {

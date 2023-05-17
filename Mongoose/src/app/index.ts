@@ -18,4 +18,3 @@ app.get('/', async (req: Request, res: Response) => {
     res.send('Server running successfully');
 });
 
-export default app;
